@@ -16,11 +16,7 @@ export default function SearchProduct({ onFilter }) {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFilter({
-            searchItem: searchItem.toLowerCase(),
-            category: category.toLowerCase()
-        });
-        
+        onFilter({searchItem, category});  
     };
     
     return (
@@ -52,13 +48,15 @@ export function ProductList({ filtered }) {
     return <p>No products found.</p>;
   }
 
-  return (
-    <ul>
-      {filtered.map((product) => (
+  const filteredProducts = filtered.map((product) => (
         <li key={product.id}>
           <strong>{product.name}</strong> - {product.category} - R{product.price}
         </li>
-      ))}
+      ));
+
+  return (
+    <ul>
+      {filteredProducts}
     </ul>
   );
 }

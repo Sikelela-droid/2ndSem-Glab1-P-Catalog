@@ -18,9 +18,10 @@ export default function App() {
 
   const handleFilter = ({searchItem, category}) => {
     const lowerSearch = searchItem.toLowerCase();
+    const lowerCategory = category.toLowerCase();
 
     const filtered = products.filter((product) => {
-      const matchesName = product.name.toLowerCase().includes(lowerSearch);
+      const matchesName = product.name.toLowerCase().includes(lowerSearch, lowerCategory);
       const matchesCategory = category === "all" || product.category === category;
       return matchesName && matchesCategory;
     });
